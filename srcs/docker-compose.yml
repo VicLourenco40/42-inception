@@ -1,0 +1,55 @@
+services:
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx/
+    volumes:
+      - wordpress:/var/www/html/
+    networks:
+      - inception
+    ports:
+      - "443:443"
+    restart: always
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress/
+    volumes:
+      - wordpress:/var/www/html/
+    networks:
+      - inception
+    environment:
+      DOMAIN_NAME: $DOMAIN_NAME
+      DB_NAME: $DB_NAME
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      WP_USER: $WP_USER
+      WP_EMAIL: $WP_EMAIL
+      WP_PASSWORD: $WP_PASSWORD
+      WP_ADMIN: $WP_ADMIN
+      WP_ADMIN_EMAIL: $WP_ADMIN_EMAIL
+      WP_ADMIN_PASSWORD: $WP_ADMIN_PASSWORD
+    restart: always
+
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb/
+    volumes:
+      - mariadb:/var/lib/mysql/
+    networks:
+      - inception
+    environment:
+      DB_NAME: $DB_NAME
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DB_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+    restart: always
+
+volumes:
+  wordpress:
+    name: wordpress
+  mariadb:
+    name: mariadb
+
+networks:
+  inception:
+    name: inception
