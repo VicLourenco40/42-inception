@@ -12,9 +12,9 @@ if [ ! -e $initialized ]; then
 	chown -R www-data:www-data .
 
 	wp core download --allow-root
-	wp config create --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PASSWORD --dbhost='mariadb' --allow-root
-	wp core install --url='localhost:4430' --title='Inception' --admin_user=$WP_ADMIN --admin_email=$WP_ADMIN_EMAIL --admin_password=$WP_ADMIN_PASSWORD --allow-root --skip-email
-	wp user create $WP_USER $WP_EMAIL --user_pass=$WP_PASSWORD --allow-root
+	wp config create --dbname="$DB_NAME" --dbuser="$DB_USER" --dbpass="$(cat $DB_PASSWORD_FILE)" --dbhost='mariadb' --allow-root
+	wp core install --url="$DOMAIN_NAME" --title="$WP_TITLE" --admin_user="$WP_ADMIN" --admin_email="$WP_ADMIN@email.com" --admin_password="$(cat $WP_ADMIN_PASSWORD_FILE)" --allow-root --skip-email
+	wp user create "$WP_USER" "$WP_USER@email.com" --user_pass="$(cat $WP_PASSWORD_FILE)" --allow-root
 
 	touch $initialized
 fi
