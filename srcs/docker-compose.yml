@@ -1,5 +1,6 @@
 services:
   nginx:
+    image: nginx:inception
     container_name: nginx
     build: ./requirements/nginx/
     volumes:
@@ -11,6 +12,7 @@ services:
     restart: always
 
   wordpress:
+    image: wordpress:inception
     container_name: wordpress
     build: ./requirements/wordpress/
     volumes:
@@ -34,6 +36,7 @@ services:
     restart: always
 
   mariadb:
+    image: mariadb:inception
     container_name: mariadb
     build: ./requirements/mariadb/
     volumes:
