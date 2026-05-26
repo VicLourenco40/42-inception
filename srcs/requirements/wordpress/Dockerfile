@@ -8,4 +8,4 @@ COPY --chmod=755 ./tools/script.sh /
 
 EXPOSE 9000
 
-CMD ["/script.sh"]
+ENTRYPOINT ["/script.sh"]

@@ -7,4 +7,4 @@ COPY --chmod=755 ./tools/script.sh /
 
 EXPOSE 3306
 
-CMD ["/script.sh"]
+ENTRYPOINT ["/script.sh"]
