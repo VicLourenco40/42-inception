@@ -1,8 +1,11 @@
 COMPOSE = ./srcs/docker-compose.yml
 
-.PHONY: up down clean re
+.PHONY: build up down clean re
 
-up: $(VOLUMES)
+build:
+	docker compose -f $(COMPOSE) build
+
+up:
 	docker compose -f $(COMPOSE) up
 
 down:
@@ -12,4 +15,4 @@ clean: down
 	docker system prune -af
 	docker volume prune -af
 
-re: clean up
+re: clean build
