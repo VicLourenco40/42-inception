@@ -75,4 +75,5 @@ make re
 
 ## Project Data
 WordPress and MariaDB volumes are located at /home/USER/data/volumes/.
+
 Data persists until volumes are deleted.

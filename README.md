@@ -131,4 +131,5 @@ make re
 - [Installing MariaDB](https://mariadb.com/docs/server/mariadb-quickstart-guides/installing-mariadb-server-guide)
 
 **AI usage**
+
 Occasional help in searching documentation, when struggling to find specific details manually.
