@@ -1,10 +1,6 @@
 COMPOSE = ./srcs/docker-compose.yml
-DATA = $(HOME)/data/
-VOLUMES = $(DATA)/wordpress/ $(DATA)/mariadb/
 
-.PHONY: all up down clean re
-
-all: up
+.PHONY: up down clean re
 
 up: $(VOLUMES)
 	docker compose -f $(COMPOSE) up
@@ -15,9 +11,5 @@ down:
 clean: down
 	docker system prune -af
 	docker volume prune -af
-	sudo rm -rf $(DATA)
 
-re: clean all
-
-$(VOLUMES):
-	mkdir -p $@
+re: clean up
